@@ -1,6 +1,8 @@
 import styled from "styled-components";
 
-export const Item = styled.tr``;
+export const Item = styled.tr`
+  
+`;
 
 export const ImageContainer = styled.td`
   width: 50px;

@@ -2,6 +2,7 @@ import { Routes, Route, Link } from "react-router-dom";
 import { Provider } from "react-redux";
 
 import { Header } from "./Components/Header";
+import Cart from "./Components/Cart";
 import { Checkout } from "./Pages/Checkout";
 import Favorite from "./Pages/Favorite";
 import { Home } from "./Pages/Home";
@@ -13,6 +14,7 @@ export function App() {
   return (
     <Provider store={store}>
       <Header />
+      <Cart />
       <GlobalStyle />
       <Routes>
         <Route path="/" element={<Home />} />

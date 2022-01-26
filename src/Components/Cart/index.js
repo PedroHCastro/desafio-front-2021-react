@@ -1,14 +1,23 @@
 import React from "react";
 import { connect } from "react-redux";
-import { CartItem } from "../CartItem";
+import CartItem from "../CartItem";
 
 import * as S from "./styles";
 
-function Cart({ ItemsCart }) {
+function Cart({ ItemsCart, dispatch }) {
+
+  function clearCart(film) {
+    return {
+      type: "CLEARCART"
+    };
+  }
+  
   return (
     <S.Container>
-      <S.Title>Meu Carrinho</S.Title>
-      <S.ClearCart>Esvaziar</S.ClearCart>
+      <S.HeaderContent>
+        <S.Title>Meu Carrinho</S.Title>
+        <S.ClearCart onClick={() => dispatch(clearCart())}>Esvaziar</S.ClearCart>
+      </S.HeaderContent>
 
       <S.ItemsContainer>
         {ItemsCart.map((film) => (

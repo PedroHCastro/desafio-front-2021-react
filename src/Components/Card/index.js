@@ -1,5 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faHeart, faStar } from '@fortawesome/free-solid-svg-icons'
 
 import * as S from "./styles";
 
@@ -11,7 +13,17 @@ function addToCart(film) {
 }
 
 function Card({ data, config: { base_url, poster_sizes }, dispatch }) {
-  const { poster_path, release_date, title, vote_count, genre_ids } = data;
+  const { poster_path, release_date, title, vote_count, genre_ids, value } = data; 
+  // const item = { poster_path, release_date, title, vote_count, genre_ids}
+
+  // console.log(typeof data.value);
+
+  // if(typeof data.value === 'undefined') {
+  
+  //   item.value = value();
+  // } else {
+  //   item.value = data.value;
+  // }
   //   console.log("data", data);
   //   adult: false
   //   backdrop_path: "/1Wlwnhn5sXUIwlxpJgWszT622PS.jpg"
@@ -32,26 +44,24 @@ function Card({ data, config: { base_url, poster_sizes }, dispatch }) {
     <S.Container>
       <S.ImgContainer>
         <S.ExpansiveContainer>
+        
+          <S.HeartIcon icon={faHeart} />
           <S.ImgStyled src={`${base_url}${poster_sizes[3]}${poster_path}`} />
 
           <S.HiddenDetail>
             <S.DateLabel>{release_date}</S.DateLabel>
             <S.TitleFilm className="hidden">{title}</S.TitleFilm>
-            <S.SubDetailContainer className="hidden">
-              <S.Rating>{vote_count}</S.Rating>
-              <S.Gender>{genre_ids[0]}</S.Gender>
-            </S.SubDetailContainer>
-            <S.Price className="hidden">R$ 79,99</S.Price>
+            <S.Price className="hidden">{`R$ ${value}`}</S.Price>
           </S.HiddenDetail>
         </S.ExpansiveContainer>
       </S.ImgContainer>
       <S.DetailContainer>
         <S.TitleFilm>{title}</S.TitleFilm>
         <S.SubDetailContainer>
-          <S.Rating>{vote_count}</S.Rating>
+          <S.Rating><FontAwesomeIcon icon={faStar} />{vote_count}</S.Rating>
           <S.Gender>{genre_ids[0]}</S.Gender>
         </S.SubDetailContainer>
-        <S.Price>R$ 79,99</S.Price>
+        <S.Price>{`R$ ${value}`}</S.Price>
       </S.DetailContainer>
       <S.ButtonAddToCart onClick={() => dispatch(addToCart(data))}>
         Adicionar

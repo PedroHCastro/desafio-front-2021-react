@@ -7,9 +7,28 @@ function reducer(state = INITIAL_STATE, action) {
   console.log(state);
   switch (action.type) {
     case "ADDCART":
-      return [...state, film];
+      let currentState = JSON.parse(JSON.stringify(state))
+      let filmExists = false;
+      currentState.map(filmState => {
+        if (filmState.id === film.id) {
+          filmState.count += 1
+          filmState.value += film.value
+          filmExists = true;
+        }
+      })
+      if (!filmExists) {
+        currentState = [...currentState, film]
+      }
+      return currentState;
     case "REMOVECART":
-      return { dataCart: state.pop() };
+      const currentData = state
+      const filteredData = currentData.filter(filmState => {
+          if (filmState.id !== film.id)
+            return filmState
+        })
+      return filteredData;
+    case "CLEARCART":
+      return [];
     default:
       return state;
   }
@@ -17,27 +36,3 @@ function reducer(state = INITIAL_STATE, action) {
 
 const store = createStore(reducer);
 export default store;
-
-// import Redux from "react-redux";
-
-// const addCart = { type: "ADDCART" };
-// const removeCart = { type: "REMOVECART" };
-
-// const reducer = (state = { dataCart: [] }, action) => {
-//   switch (action.type) {
-//     case "ADDCART":
-//       return { dataCart: state.push() };
-//     case "REMOVECART":
-//       return { dataCart: state.popð() };
-//     default:
-//       return state;
-//   }
-// };
-
-// // Store
-// const store = Redux.createStore(reducer);
-
-// // Logger
-// function log() {
-//   console.log("Contador: ", store.getState().contador);
-// }

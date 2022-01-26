@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 export const Container = styled.div`
   /* border: 2px solid #c3cfd9; */
@@ -10,6 +11,7 @@ export const Container = styled.div`
   border-radius: 4px;
   /* overflow: hidden; */
   position: relative;
+  background: #fff;
 `;
 
 export const ImgContainer = styled.div`
@@ -49,15 +51,16 @@ export const ExpansiveContainer = styled.div`
     top: 0;
     left: 50%;
     transform: translate(-50%, 0%);
-    z-index: 2;
+    z-index: 5;
 
     > div {
-      position: absolute;
+      /* position: absolute;
       bottom: 0;
       width: 100%;
-      height: 100%;
+      height: 100%; */
       text-align: center;
-      background: rgb(114 202 160 / 50%);
+      background: #000;//rgba(255, 255, 255, 0.50);
+      /* rgb(114 202 160 / 50%); */
 
       display: flex;
       flex-direction: column;
@@ -66,6 +69,7 @@ export const ExpansiveContainer = styled.div`
 
       ${DateLabel} {
         position: static;
+        display: none;
       }
 
       .hidden {
@@ -79,6 +83,15 @@ export const ExpansiveContainer = styled.div`
     }
   }
 `;
+
+export const HeartIcon = styled(FontAwesomeIcon)`
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  color: #fff;
+  font-size: 26px;
+  z-index: 4;
+`
 
 export const ImgStyled = styled.img`
   width: 100%;
