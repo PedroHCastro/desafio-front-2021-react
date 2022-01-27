@@ -1,25 +1,25 @@
 import React from "react";
-import { connect } from "react-redux";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHeart, faStar } from '@fortawesome/free-solid-svg-icons'
+import { connect, useDispatch, useSelector } from "react-redux";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHeart, faStar } from "@fortawesome/free-solid-svg-icons";
+
+import { addToCart } from "../../store/cart";
+import { addFavorite, removeFavorite } from "../../store/favorite";
 
 import * as S from "./styles";
 
-function addToCart(film) {
-  return {
-    type: "ADDCART",
-    film,
-  };
-}
+function Card({ data, config: { base_url, poster_sizes } }) {
+  const { id, poster_path, release_date, title, vote_count, genre_ids, value } =
+    data;
 
-function Card({ data, config: { base_url, poster_sizes }, dispatch }) {
-  const { poster_path, release_date, title, vote_count, genre_ids, value } = data; 
+  const dispatch = useDispatch();
+
   // const item = { poster_path, release_date, title, vote_count, genre_ids}
 
   // console.log(typeof data.value);
 
   // if(typeof data.value === 'undefined') {
-  
+
   //   item.value = value();
   // } else {
   //   item.value = data.value;
@@ -40,12 +40,25 @@ function Card({ data, config: { base_url, poster_sizes }, dispatch }) {
   //   vote_average: 7.4
   //   vote_count: 926
 
+  const { idsFavorites } = useSelector((state) => state.favorite);
+  const isFavorite = idsFavorites.includes(id);
+
   return (
     <S.Container>
       <S.ImgContainer>
         <S.ExpansiveContainer>
-        
-          <S.HeartIcon icon={faHeart} />
+          <S.HeartButton
+            onClick={() => {
+              isFavorite
+                ? dispatch(removeFavorite(id))
+                : dispatch(addFavorite(data));
+            }}
+          >
+            <S.HeartIcon
+              className={isFavorite ? "favorite" : ""}
+              icon={faHeart}
+            />
+          </S.HeartButton>
           <S.ImgStyled src={`${base_url}${poster_sizes[3]}${poster_path}`} />
 
           <S.HiddenDetail>
@@ -58,7 +71,10 @@ function Card({ data, config: { base_url, poster_sizes }, dispatch }) {
       <S.DetailContainer>
         <S.TitleFilm>{title}</S.TitleFilm>
         <S.SubDetailContainer>
-          <S.Rating><FontAwesomeIcon icon={faStar} />{vote_count}</S.Rating>
+          <S.Rating>
+            <FontAwesomeIcon icon={faStar} />
+            {vote_count}
+          </S.Rating>
           <S.Gender>{genre_ids[0]}</S.Gender>
         </S.SubDetailContainer>
         <S.Price>{`R$ ${value}`}</S.Price>

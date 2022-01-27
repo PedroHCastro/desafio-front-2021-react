@@ -1,8 +1,8 @@
 import React from "react";
 
 import { connect } from "react-redux";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faTrash } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import * as S from "./styles";
 
 function CartItem({ data, dispatch }) {
@@ -12,7 +12,7 @@ function CartItem({ data, dispatch }) {
   function removeItemToCart(film) {
     return {
       type: "REMOVECART",
-      film
+      film,
     };
   }
 
@@ -24,7 +24,11 @@ function CartItem({ data, dispatch }) {
       <S.ItemInfo>{title}</S.ItemInfo>
       <S.ItemInfo>{count}</S.ItemInfo>
       <S.ItemInfo>{`R$ ${value.toFixed(2)}`}</S.ItemInfo>
-      <S.ItemInfo><button onClick={() => dispatch(removeItemToCart(data))}><FontAwesomeIcon icon={faTrash}/></button></S.ItemInfo>
+      <S.ItemInfo>
+        <button onClick={() => dispatch(removeItemToCart(data))}>
+          <FontAwesomeIcon icon={faTrash} />
+        </button>
+      </S.ItemInfo>
     </S.Item>
   );
 }

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export const Container = styled.div`
   /* border: 2px solid #c3cfd9; */
@@ -59,7 +59,7 @@ export const ExpansiveContainer = styled.div`
       width: 100%;
       height: 100%; */
       text-align: center;
-      background: #000;//rgba(255, 255, 255, 0.50);
+      background: #000; //rgba(255, 255, 255, 0.50);
       /* rgb(114 202 160 / 50%); */
 
       display: flex;
@@ -84,14 +84,21 @@ export const ExpansiveContainer = styled.div`
   }
 `;
 
-export const HeartIcon = styled(FontAwesomeIcon)`
+export const HeartButton = styled.button`
   position: absolute;
   top: 5px;
   right: 5px;
+  z-index: 4;
+`;
+
+export const HeartIcon = styled(FontAwesomeIcon)`
   color: #fff;
   font-size: 26px;
-  z-index: 4;
-`
+
+  &.favorite {
+    color: #c51d3b;
+  }
+`;
 
 export const ImgStyled = styled.img`
   width: 100%;
