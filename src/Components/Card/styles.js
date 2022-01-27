@@ -47,6 +47,8 @@ export const ExpansiveContainer = styled.div`
     height: auto;
     border-radius: 4px;
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
 
     top: 0;
     left: 50%;
@@ -54,17 +56,15 @@ export const ExpansiveContainer = styled.div`
     z-index: 5;
 
     > div {
-      /* position: absolute;
-      bottom: 0;
-      width: 100%;
-      height: 100%; */
-      text-align: center;
-      background: #000; //rgba(255, 255, 255, 0.50);
-      /* rgb(114 202 160 / 50%); */
+      text-align: left;
+      background: #000;
+      padding: 5px;
 
+      width: 100%;
+      height: 72px;
       display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
+      /* flex-direction: column; */
+      justify-content: space-between;
       align-items: center;
 
       ${DateLabel} {
@@ -74,6 +74,10 @@ export const ExpansiveContainer = styled.div`
 
       .hidden {
         display: block;
+        color: #fff!important;
+      }
+
+      h2 {
         color: #fff;
       }
     }
@@ -89,11 +93,14 @@ export const HeartButton = styled.button`
   top: 5px;
   right: 5px;
   z-index: 4;
+  background: transparent;
+    border: none;
 `;
 
 export const HeartIcon = styled(FontAwesomeIcon)`
   color: #fff;
   font-size: 26px;
+  text-shadow: 3px 3px rgb(0 0 0 );/// 15%
 
   &.favorite {
     color: #c51d3b;
@@ -104,6 +111,7 @@ export const ImgStyled = styled.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
+  filter: brightness(0.92);
 `;
 
 export const DetailContainer = styled.div`
@@ -135,6 +143,18 @@ export const SubDetailContainer = styled.div`
 export const Rating = styled.div`
   margin-right: 15px;
 `;
+
+export const ButtonAddToCartDetail = styled.button`
+  background: transparent;
+  width: 52px;
+  min-width: 52px;
+  height: 100%;
+  border: none;
+  border-left: 1px solid #fff;
+  margin-left: 8px;
+  font-size: 20px;
+`
+
 export const Gender = styled.span``;
 export const Price = styled.p``;
 export const ButtonAddToCart = styled.button`

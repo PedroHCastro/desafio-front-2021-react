@@ -1,7 +1,7 @@
 import React from "react";
 import { connect, useDispatch, useSelector } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHeart, faStar } from "@fortawesome/free-solid-svg-icons";
+import { faHeart, faStar, faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 
 import { addToCart } from "../../store/cart";
 import { addFavorite, removeFavorite } from "../../store/favorite";
@@ -63,8 +63,13 @@ function Card({ data, config: { base_url, poster_sizes } }) {
 
           <S.HiddenDetail>
             <S.DateLabel>{release_date}</S.DateLabel>
-            <S.TitleFilm className="hidden">{title}</S.TitleFilm>
-            <S.Price className="hidden">{`R$ ${value}`}</S.Price>
+            <div className="hidden">
+              <S.TitleFilm>{title}</S.TitleFilm>
+              <S.Price>{`R$ ${value}`}</S.Price>
+            </div>
+            <S.ButtonAddToCartDetail className="hidden" onClick={() => dispatch(addToCart(data))}>
+              <FontAwesomeIcon icon={faShoppingCart} />
+            </S.ButtonAddToCartDetail>
           </S.HiddenDetail>
         </S.ExpansiveContainer>
       </S.ImgContainer>
