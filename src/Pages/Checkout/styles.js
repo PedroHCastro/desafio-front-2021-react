@@ -8,15 +8,30 @@ export const Container = styled.div`
   flex-wrap: wrap;
 
   width: 854px;
+  max-width: 100%;
   margin: 0 auto;
   padding: 80px 0 60px;
+
+  @media (max-width: 767px) {
+    flex-direction: column;
+    padding: 110px 20px;
+  }
 `;
 
 export const FirstSection = styled.div`
   width: 45%;
+
+  @media (max-width: 767px) {
+    width: 100%;
+  }
 `;
 export const SecondSection = styled.div`
   width: 45%;
+
+  @media (max-width: 767px) {
+    margin-top: 40px;
+    width: 100%;
+  }
 `;
 
 export const FinalizePurchase = styled.button`
@@ -26,8 +41,8 @@ export const FinalizePurchase = styled.button`
   color: #fff;
   border: none;
   border-radius: 4px;
-`
-
+  margin-top: 20px;
+`;
 
 export const FormContainer = styled.div`
   h3 {
@@ -68,5 +83,23 @@ export const FormStyled = styled(Form)`
   input:nth-child(5),
   input:nth-child(8) {
     width: 40%;
+  }
+`;
+
+export const ContainerTable = styled.div`
+  max-height: calc(100vh - 200px);
+  overflow: auto;
+
+  tbody {
+    td:nth-child(2) {
+      padding-left: 8px;
+    }
+    td:nth-child(3) {
+      text-align: center;
+    }
+    td:nth-child(4) {
+      width: 84px;
+      text-align: center;
+    }
   }
 `;

@@ -37,7 +37,7 @@ export const Title = styled.p`
   font-weight: bold;
 `;
 
-export const ClearCart = styled.button`
+export const ClearFavorite = styled.button`
   color: #6558f5;
   background: transparent;
   border: none;
@@ -48,7 +48,7 @@ export const ClearCart = styled.button`
 export const TableContainer = styled.div`
   margin-top: 15px;
   width: 100%;
-  height: calc(100% - 155px);
+  height: calc(100% - 50px);
   overflow: auto;
 `;
 
@@ -60,9 +60,6 @@ export const ItemsContainer = styled.table`
       padding-left: 8px;
     }
     td:nth-child(3) {
-      text-align: center;
-    }
-    td:nth-child(4) {
       width: 84px;
       text-align: center;
     }
@@ -93,5 +90,4 @@ export const LinkStyled = styled(Link)`
   padding: 10px 0;
   border-radius: 4px;
   text-decoration: none;
-  margin-top: 15px;
 `;

@@ -1,27 +1,44 @@
 const INITIAL_STATE = {
   data: [],
   idsFavorites: [],
+  countItems: 0,
+  favoriteIsOpen: false,
 };
 
 function reduce(state = INITIAL_STATE, action) {
-  console.log("state", state);
   switch (action.type) {
     case "ADDFAVORITE":
+      const countItems = state.countItems + 1;
       return {
+        ...state,
         data: [...state.data, action.dataFavorite],
         idsFavorites: [...state.idsFavorites, action.dataFavorite.id],
+        countItems,
       };
     case "REMOVEFAVORITE":
       const currentData = state;
+      let removeCountItems = 0;
       const filteredData = currentData.data.filter((favoriteState) => {
-        console.log("favoriteState", favoriteState, action.id);
-        if (favoriteState.id !== action.id) return favoriteState;
+        if (favoriteState.id !== action.data.id) {
+          return favoriteState;
+        }
+        removeCountItems += 1;
       });
+      const courrentCountItems = state.countItems - removeCountItems;
       const filteredIds = currentData.idsFavorites.filter((favoriteIdState) => {
-        console.log("favoriteIdState", favoriteIdState, action.id);
-        if (favoriteIdState !== action.id) return favoriteIdState;
+        if (favoriteIdState !== action.data.id) return favoriteIdState;
       });
-      return { data: filteredData, idsFavorites: filteredIds };
+      return {
+        ...state,
+        data: filteredData,
+        idsFavorites: filteredIds,
+        countItems: courrentCountItems,
+      };
+    case "CLEARFAVORITE":
+      return INITIAL_STATE;
+
+    case "TOGGLEFAVORITE":
+      return { ...state, favoriteIsOpen: !state.favoriteIsOpen };
     default:
       return state;
   }
@@ -30,16 +47,27 @@ function reduce(state = INITIAL_STATE, action) {
 export default reduce;
 
 export function addFavorite(dataFavorite) {
-  console.log(dataFavorite);
   return {
     type: "ADDFAVORITE",
     dataFavorite,
   };
 }
 
-export function removeFavorite(id) {
+export function removeFavorite(data) {
   return {
     type: "REMOVEFAVORITE",
-    id,
+    data,
+  };
+}
+
+export function clearFavorite() {
+  return {
+    type: "CLEARFAVORITE",
+  };
+}
+
+export function toggleFavorite() {
+  return {
+    type: "TOGGLEFAVORITE",
   };
 }

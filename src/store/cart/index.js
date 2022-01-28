@@ -7,7 +7,6 @@ const INITIAL_STATE = {
 
 function reducer(state = INITIAL_STATE, action) {
   const { film } = action;
-  console.log(state);
   switch (action.type) {
     case "ADDCART":
       let currentState = JSON.parse(JSON.stringify(state.data));
@@ -42,7 +41,6 @@ function reducer(state = INITIAL_STATE, action) {
         removeCountItems += film.count;
         valueToRemove += film.value;
       });
-      console.log("valueToRemove", valueToRemove);
       const currentTotalRemove = state.total - valueToRemove;
       const courrentCountItems = state.countItems - removeCountItems;
       return {
@@ -71,6 +69,7 @@ export function addToCart(film) {
 }
 
 export function removeItemToCart(film) {
+  console.log(film);
   return {
     type: "REMOVECART",
     film,

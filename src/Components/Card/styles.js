@@ -12,12 +12,19 @@ export const Container = styled.div`
   /* overflow: hidden; */
   position: relative;
   background: #fff;
+
+  @media (max-width: 767px) {
+    width: 100%;
+  }
 `;
 
 export const ImgContainer = styled.div`
   width: 100%;
   height: 175px;
   position: relative;
+  @media (max-width: 767px) {
+    height: auto;
+  }
 `;
 
 export const HiddenDetail = styled.div`
@@ -41,49 +48,52 @@ export const DateLabel = styled.span`
 export const ExpansiveContainer = styled.div`
   width: 100%;
   height: 100%;
-  &:hover {
-    position: absolute;
-    width: 150%;
-    height: auto;
-    border-radius: 4px;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
 
-    top: 0;
-    left: 50%;
-    transform: translate(-50%, 0%);
-    z-index: 5;
-
-    > div {
-      text-align: left;
-      background: #000;
-      padding: 5px;
-
-      width: 100%;
-      height: 72px;
+  @media (min-width: 768px) {
+    &:hover {
+      position: absolute;
+      width: 150%;
+      height: auto;
+      border-radius: 4px;
+      overflow: hidden;
       display: flex;
-      /* flex-direction: column; */
-      justify-content: space-between;
-      align-items: center;
+      flex-direction: column;
 
-      ${DateLabel} {
+      top: 0;
+      left: 50%;
+      transform: translate(-50%, 0%);
+      z-index: 5;
+
+      > div {
+        text-align: left;
+        background: #000;
+        padding: 5px;
+
+        width: 100%;
+        height: 72px;
+        display: flex;
+        /* flex-direction: column; */
+        justify-content: space-between;
+        align-items: center;
+
+        ${DateLabel} {
+          position: static;
+          display: none;
+        }
+
+        .hidden {
+          display: block;
+          color: #fff !important;
+        }
+
+        h2 {
+          color: #fff;
+        }
+      }
+
+      > span {
         position: static;
-        display: none;
       }
-
-      .hidden {
-        display: block;
-        color: #fff!important;
-      }
-
-      h2 {
-        color: #fff;
-      }
-    }
-
-    > span {
-      position: static;
     }
   }
 `;
@@ -94,13 +104,13 @@ export const HeartButton = styled.button`
   right: 5px;
   z-index: 4;
   background: transparent;
-    border: none;
+  border: none;
 `;
 
 export const HeartIcon = styled(FontAwesomeIcon)`
   color: #fff;
   font-size: 26px;
-  text-shadow: 3px 3px rgb(0 0 0 );/// 15%
+  text-shadow: 3px 3px rgb(0 0 0); /// 15%
 
   &.favorite {
     color: #c51d3b;
@@ -142,6 +152,7 @@ export const SubDetailContainer = styled.div`
 `;
 export const Rating = styled.div`
   margin-right: 15px;
+  font-weight: bold;
 `;
 
 export const ButtonAddToCartDetail = styled.button`
@@ -153,7 +164,7 @@ export const ButtonAddToCartDetail = styled.button`
   border-left: 1px solid #fff;
   margin-left: 8px;
   font-size: 20px;
-`
+`;
 
 export const Gender = styled.span``;
 export const Price = styled.p``;
@@ -164,4 +175,12 @@ export const ButtonAddToCart = styled.button`
   color: #fff;
   border: none;
   border-radius: 4px;
+
+  @media (max-width: 767px) {
+    height: 54px;
+  }
+`;
+
+export const StarIcon = styled(FontAwesomeIcon)`
+  margin-right: 8px;
 `;

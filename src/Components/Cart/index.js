@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import CartItem from "../CartItem";
-import { clearCart, toggleCart } from "../../store/cart";
+import { CartItem } from "../CartItem";
+import { removeItemToCart, clearCart, toggleCart } from "../../store/cart";
 
 import * as S from "./styles";
+import { formatMoney } from "../../utils";
 
 export function Cart() {
   const [hasItems, setHasItems] = useState(false);
@@ -34,7 +35,11 @@ export function Cart() {
         <S.ItemsContainer>
           <tbody>
             {itemsCart.map((film) => (
-              <CartItem key={film.id} data={film} />
+              <CartItem
+                key={film.id}
+                data={film}
+                handleRemove={removeItemToCart}
+              />
             ))}
           </tbody>
         </S.ItemsContainer>
@@ -43,7 +48,7 @@ export function Cart() {
         <S.PaymentContainer>
           <S.TotalBox>
             <S.LabelTotal>Total:</S.LabelTotal>
-            <S.LabelPrice>{`R$ ${total}`}</S.LabelPrice>
+            <S.LabelPrice>{`R$ ${formatMoney(total.toFixed(2))}`}</S.LabelPrice>
           </S.TotalBox>
           <S.LinkStyled to="/checkout" onClick={() => dispatch(toggleCart())}>
             Finalizar compra

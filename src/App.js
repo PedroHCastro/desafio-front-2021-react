@@ -1,25 +1,48 @@
-import { Routes, Route, Link } from "react-router-dom";
-import { Provider } from "react-redux";
+import { useEffect } from "react";
+import { Routes, Route } from "react-router-dom";
+import { Provider, useDispatch } from "react-redux";
 
 import { Header } from "./Components/Header";
 import { Cart } from "./Components/Cart";
-import { Checkout } from "./Pages/Checkout";
-import { Favorite } from "./Pages/Favorite";
-import { Home } from "./Pages/Home";
-import { GlobalStyle } from "./styles/global";
+import { Favorite } from "./Components/Favorite";
 
+import { Checkout } from "./Pages/Checkout";
+import { Home } from "./Pages/Home";
+
+import { getConfig } from "./Services/ConfigurationServices";
+import { getGenres } from "./Services/MovieServices";
+
+import { addConfig } from "./store/config";
+import { addAddGeneres } from "./store/movie";
+
+import { GlobalStyle } from "./styles/global";
 import store from "./store";
+import { Alert } from "./Components/Alert";
 
 export function App() {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    async function fetchData() {
+      const { images } = await getConfig();
+      const { genres } = await getGenres();
+
+      dispatch(addConfig(images));
+      dispatch(addAddGeneres(genres));
+    }
+
+    fetchData();
+  });
+
   return (
     <Provider store={store}>
+      <GlobalStyle />
       <Header />
       <Cart />
-      <GlobalStyle />
+      <Favorite />
+      <Alert />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="checkout" element={<Checkout />} />
-        <Route path="favoritos" element={<Favorite />} />
       </Routes>
     </Provider>
   );
