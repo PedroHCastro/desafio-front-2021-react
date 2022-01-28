@@ -90,6 +90,10 @@ export const ContainerTable = styled.div`
   max-height: calc(100vh - 200px);
   overflow: auto;
 
+  th {
+    padding-bottom: 30px;
+  } 
+  
   tbody {
     td:nth-child(2) {
       padding-left: 8px;

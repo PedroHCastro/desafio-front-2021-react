@@ -1,7 +1,9 @@
 import React, { useEffect, useRef } from "react";
 import { useField } from "@unform/core";
 
-export function Input({ name, label, ...rest }) {
+import * as S from "./styled";
+
+export function InputMask({ name, label, ...rest }) {
   const inputRef = useRef(null);
 
   const { fieldName, defaultValue = "", registerField, error } = useField(name);
@@ -17,14 +19,15 @@ export function Input({ name, label, ...rest }) {
     <>
       {label && <label htmlFor={fieldName}>{label}</label>}
 
-      <input
+      <S.ReactInputMaskStyled
+        className={error ? "error" : ""}
         ref={inputRef}
         id={fieldName}
         defaultValue={defaultValue}
         {...rest}
       />
 
-      {error && <span style={{ color: "#f00" }}>{error}</span>}
+      {/* {error && <S.Tooltip style={{ color: "#f00" }}>{error}</S.Tooltip>} */}
     </>
   );
 }

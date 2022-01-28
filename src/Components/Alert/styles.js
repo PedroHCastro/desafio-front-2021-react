@@ -21,7 +21,11 @@ export const Title = styled.h4`
   text-align: center;
   margin-bottom: 20px;
 `;
-export const Content = styled.div``;
+export const Content = styled.div`
+  ul {
+    list-style: none;  
+  }
+`;
 export const ButtonConfirm = styled.button`
   color: #6558f5;
   background: transparent;

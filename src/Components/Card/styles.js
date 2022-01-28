@@ -2,14 +2,12 @@ import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export const Container = styled.div`
-  /* border: 2px solid #c3cfd9; */
   box-shadow: 3px 3px 5px 3px rgba(0, 0, 0, 0.15);
   border-bottom: none;
   width: 22%;
   margin-bottom: 40px;
 
   border-radius: 4px;
-  /* overflow: hidden; */
   position: relative;
   background: #fff;
 
@@ -72,7 +70,6 @@ export const ExpansiveContainer = styled.div`
         width: 100%;
         height: 72px;
         display: flex;
-        /* flex-direction: column; */
         justify-content: space-between;
         align-items: center;
 
@@ -110,7 +107,7 @@ export const HeartButton = styled.button`
 export const HeartIcon = styled(FontAwesomeIcon)`
   color: #fff;
   font-size: 26px;
-  text-shadow: 3px 3px rgb(0 0 0); /// 15%
+  text-shadow: 3px 3px rgb(0 0 0);
 
   &.favorite {
     color: #c51d3b;
@@ -125,6 +122,7 @@ export const ImgStyled = styled.img`
 `;
 
 export const DetailContainer = styled.div`
+  min-height: 142px;
   text-align: center;
   padding: 10px;
 `;
@@ -146,7 +144,6 @@ export const TitleFilm = styled.h2`
 `;
 export const SubDetailContainer = styled.div`
   display: flex;
-  /* align-items: center; */
   justify-content: center;
   margin: 8px auto 12px;
 `;

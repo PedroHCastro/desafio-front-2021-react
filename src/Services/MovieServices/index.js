@@ -3,7 +3,7 @@ import { formatDate } from "../../utils";
 
 export async function getMovies() {
   const response = await api.get(
-    "/movie/popular?api_key=ff7205d949c40dcb9fc509d150c9a07f&language=pt-BR"
+    `/movie/popular?api_key=${process.env.REACT_APP_ACCESS_KEY}&language=pt-BR`
   );
   const data = response.data;
   const value = () => parseFloat((Math.random() * (99 - 15) + 15).toFixed(2));
@@ -18,7 +18,7 @@ export async function getMovies() {
 
 export async function getMoviesBySearch(params) {
   const response = await api.get(
-    `/search/movie?api_key=ff7205d949c40dcb9fc509d150c9a07f&language=pt-BR&query=${params}`
+    `/search/movie?api_key=${process.env.REACT_APP_ACCESS_KEY}&language=pt-BR&query=${params}`
   );
   const data = response.data;
   const value = () => parseFloat((Math.random() * (99 - 15) + 15).toFixed(2));
@@ -33,7 +33,7 @@ export async function getMoviesBySearch(params) {
 
 export async function getGenres(params) {
   const response = await api.get(
-    "genre/movie/list?api_key=ff7205d949c40dcb9fc509d150c9a07f&language=pt-BR"
+    `genre/movie/list?api_key=${process.env.REACT_APP_ACCESS_KEY}&language=pt-BR`
   );
   const data = response.data;
   return data;

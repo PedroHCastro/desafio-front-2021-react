@@ -25,7 +25,7 @@ export function Checkout() {
     if (data.length === 0) {
       navigate("/");
     }
-  }, [data]);
+  }, [data, navigate]);
 
   function handleOpenModal() {
     setOpenModal(true);
@@ -35,15 +35,14 @@ export function Checkout() {
     formRef.current && formRef.current.submitForm();
   }
   const handleFormSubmit = async (data) => {
-    console.log("data+++++", data);
     try {
       formRef.current?.setErrors({});
 
       await schema.validate(data, {
         abortEarly: false,
       });
+      handleOpenModal()
     } catch (err) {
-      console.log("err->", err);
       if (err instanceof yup.ValidationError) {
         const errorMessages = {};
         let contentError = "<ul style='color: red;'>";
@@ -52,23 +51,28 @@ export function Checkout() {
           contentError += ` <li>${error.message}</li>`;
         });
         contentError += "</ul>";
-        // dispatch(
-        //   setDataAlert({
-        //     title: "Atenção",
-        //     content: contentError,
-        //     button: "OK",
-        //   })
-        // );
-        // dispatch(toggleAlert());
-        // console.log(errorMessages);
+        dispatch(
+          setDataAlert({
+            title: "Atenção",
+            content: contentError,
+            button: "OK",
+          })
+        );
+        dispatch(toggleAlert());
+        console.log(errorMessages);
         formRef.current.setErrors(errorMessages);
+      } else {
+        dispatch(
+          setDataAlert({
+            title: "Atenção",
+            content: "Ocorrou um erro ao finalizar a compra, por favor tente novamente mais tarde.",
+            button: "OK",
+          })
+        );
+        dispatch(toggleAlert());
       }
-
+      
       return;
-      // Alert.alert(
-      //   "Erro na Autenticação",
-      //   "Ocorrou um erro ao fazer login, cheque as credenciais."
-      // );
     }
 
     schema.isValid(data).then(function (valid) {

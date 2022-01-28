@@ -1,7 +1,8 @@
 import { api } from "../api";
 export async function getConfig(params) {
+  console.log(process.env);
   const response = await api.get(
-    "configuration?api_key=ff7205d949c40dcb9fc509d150c9a07f"
+    `configuration?api_key=${process.env.REACT_APP_ACCESS_KEY}`
   );
   const data = response.data;
   return data;

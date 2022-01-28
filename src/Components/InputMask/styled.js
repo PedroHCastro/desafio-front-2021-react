@@ -1,7 +1,10 @@
 import styled from "styled-components";
+import ReactInputMask from "react-input-mask";
 
-export const ContainerInput = styled.div`
-  position: relative;
+export const ReactInputMaskStyled = styled(ReactInputMask)`
+  &.error {
+    border: 1px solid #f00;
+  }
 `;
 
 export const Tooltip = styled.span`
@@ -9,7 +12,6 @@ export const Tooltip = styled.span`
   bottom: 0;
 
   left: 50%;
-  /* width: auto; */
   transform: translate(50%, 0);
   display: block;
 `;
