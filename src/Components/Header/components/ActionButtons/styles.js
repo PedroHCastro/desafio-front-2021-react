@@ -1,10 +1,10 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-@media (max-width: 767px) {
-  margin-right: 10px;
-}
-`
+  @media (max-width: 767px) {
+    margin-right: 10px;
+  }
+`;
 
 export const ButtonOpen = styled.button`
   background: transparent;

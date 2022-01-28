@@ -9,13 +9,14 @@ import { Input } from "../../Components/Input";
 import { InputMask } from "../../Components/InputMask";
 
 import { removeItemToCart } from "../../store/cart";
-import { schema } from "../../utils/schema/checkoutSchema";
 import { setDataAlert, toggleAlert } from "../../store/alert";
+import { schema } from "../../utils/schema/checkoutSchema";
+import { formatMoney } from "../../utils";
 
 import * as S from "./styles";
 
 export function Checkout() {
-  const data = useSelector((state) => state.cart.data);
+  const { data, total } = useSelector((state) => state.cart);
   const [openModal, setOpenModal] = useState(false);
   const formRef = useRef();
   const dispatch = useDispatch();
@@ -41,7 +42,7 @@ export function Checkout() {
       await schema.validate(data, {
         abortEarly: false,
       });
-      handleOpenModal()
+      handleOpenModal();
     } catch (err) {
       if (err instanceof yup.ValidationError) {
         const errorMessages = {};
@@ -64,13 +65,14 @@ export function Checkout() {
         dispatch(
           setDataAlert({
             title: "Atenção",
-            content: "Ocorrou um erro ao finalizar a compra, por favor tente novamente mais tarde.",
+            content:
+              "Ocorrou um erro ao finalizar a compra, por favor tente novamente mais tarde.",
             button: "OK",
           })
         );
         dispatch(toggleAlert());
       }
-      
+
       return;
     }
 
@@ -131,6 +133,10 @@ export function Checkout() {
             </tbody>
           </table>
         </S.ContainerTable>
+        <S.ContainerTotal>
+          <S.LabelTotal>Total:</S.LabelTotal>
+          <S.ValueTotal>{`R$ ${formatMoney(total.toFixed(2))}`}</S.ValueTotal>
+        </S.ContainerTotal>
         <S.FinalizePurchase onClick={() => handleFinalizePurchase()}>
           Finalizar
         </S.FinalizePurchase>

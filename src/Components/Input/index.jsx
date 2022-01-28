@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import { useField } from "@unform/core";
 
-import * as S from "./styles"
+import * as S from "./styles";
 
 export function Input({ name, label, ...rest }) {
   const inputRef = useRef(null);
@@ -20,7 +20,7 @@ export function Input({ name, label, ...rest }) {
       {label && <label htmlFor={fieldName}>{label}</label>}
 
       <S.InputStyled
-      className={error ? "error" : ""}
+        className={error ? "error" : ""}
         ref={inputRef}
         id={fieldName}
         defaultValue={defaultValue}

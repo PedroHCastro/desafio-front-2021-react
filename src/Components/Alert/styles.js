@@ -24,7 +24,7 @@ export const Title = styled.h4`
 `;
 export const Content = styled.div`
   ul {
-    list-style: none;  
+    list-style: none;
   }
 `;
 export const ButtonConfirm = styled.button`

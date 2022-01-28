@@ -87,13 +87,13 @@ export const FormStyled = styled(Form)`
 `;
 
 export const ContainerTable = styled.div`
-  max-height: calc(100vh - 200px);
+  max-height: calc(100vh - 260px);
   overflow: auto;
 
   th {
     padding-bottom: 30px;
-  } 
-  
+  }
+
   tbody {
     td:nth-child(2) {
       padding-left: 8px;
@@ -106,4 +106,19 @@ export const ContainerTable = styled.div`
       text-align: center;
     }
   }
+`;
+
+export const ContainerTotal = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 30px;
+`;
+export const LabelTotal = styled.span`
+  font-size: 16px;
+`;
+export const ValueTotal = styled.span`
+  font-size: 22px;
+  font-weight: bold;
 `;
