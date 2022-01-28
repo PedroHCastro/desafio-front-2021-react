@@ -23,7 +23,7 @@ export function ActionButtons(rest) {
     dispatch(toggleCart());
   }
   return (
-    <div {...rest}>
+    <S.Container {...rest}>
       <S.ButtonOpen onClick={() => dispatch(handleToogleFavorite())}>
         {countItemsFavorite > 0 && <span>{countItemsFavorite}</span>}
         <FontAwesomeIcon icon={faHeart} />
@@ -32,6 +32,6 @@ export function ActionButtons(rest) {
         {countItems > 0 && <span>{countItems}</span>}
         <FontAwesomeIcon icon={faShoppingCart} />
       </S.ButtonOpen>
-    </div>
+    </S.Container>
   );
 }

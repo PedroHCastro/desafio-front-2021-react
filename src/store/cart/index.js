@@ -69,7 +69,6 @@ export function addToCart(film) {
 }
 
 export function removeItemToCart(film) {
-  console.log(film);
   return {
     type: "REMOVECART",
     film,

@@ -1,10 +1,17 @@
 import { createStore, combineReducers } from "redux";
+import { persistStore, persistReducer } from 'redux-persist'
+import storage from 'redux-persist/lib/storage' 
 
 import cartReducer from "./cart";
 import favoriteReducer from "./favorite";
 import configReducer from "./config";
 import movieReducer from "./movie";
 import alertReducer from "./alert";
+
+const persistConfig = {
+  key: 'root',
+  storage,
+}
 
 const rootReducer = combineReducers({
   cart: cartReducer,
@@ -14,5 +21,9 @@ const rootReducer = combineReducers({
   alert: alertReducer,
 });
 
-const store = createStore(rootReducer);
-export default store;
+const persistedReducer = persistReducer(persistConfig, rootReducer)
+
+const store = createStore(persistedReducer)
+const persistor = persistStore(store)
+
+export { store, persistor }

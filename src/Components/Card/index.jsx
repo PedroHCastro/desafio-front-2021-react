@@ -35,7 +35,7 @@ function Card({ data }) {
           <S.HeartButton
             onClick={() => {
               isFavorite
-                ? dispatch(removeFavorite(id))
+                ? dispatch(removeFavorite(data))
                 : dispatch(addFavorite(data));
             }}
           >

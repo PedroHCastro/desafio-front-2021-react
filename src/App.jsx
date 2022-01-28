@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
-import { Provider, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 
 import { Header } from "./Components/Header";
 import { Cart } from "./Components/Cart";
@@ -16,7 +16,6 @@ import { addConfig } from "./store/config";
 import { addAddGeneres } from "./store/movie";
 
 import { GlobalStyle } from "./styles/global";
-import store from "./store";
 import { Alert } from "./Components/Alert";
 
 export function App() {
@@ -34,7 +33,7 @@ export function App() {
   });
 
   return (
-    <Provider store={store}>
+    <>
       <GlobalStyle />
       <Header />
       <Cart />
@@ -44,6 +43,6 @@ export function App() {
         <Route path="/" element={<Home />} />
         <Route path="checkout" element={<Checkout />} />
       </Routes>
-    </Provider>
+    </>
   );
 }

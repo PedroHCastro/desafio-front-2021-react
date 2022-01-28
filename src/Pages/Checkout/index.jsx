@@ -59,7 +59,6 @@ export function Checkout() {
           })
         );
         dispatch(toggleAlert());
-        console.log(errorMessages);
         formRef.current.setErrors(errorMessages);
       } else {
         dispatch(
